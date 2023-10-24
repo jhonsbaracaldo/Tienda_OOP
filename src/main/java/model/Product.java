@@ -10,22 +10,26 @@ public class Product  {
         private double priceproduct;
         private int stock;
         Scanner impresion= new Scanner(System.in);
+
     Productos productos = new Productos();
+
     public Product(String name, double priceproduct, int stock) {
         this.name = name;
         this.priceproduct = priceproduct;
         this.stock = stock;
 
-
     }
 
-    public void existenciaProducto (){
+
+
+
+       public void  existenciaProducto (){
         System.out.print("Por favor ingrese el codigo del producto a consultar existencias: ");
         int codigoproducto = impresion.nextInt();
         int pos =productos.getCodigo().indexOf(codigoproducto);
         System.out.println("codigo    Producto  ");
         System.out.println(productos.getCodigo().get(pos) +"      "+ productos.getProduct().get(pos));
-        if(productos.getCantidad().get(pos) >0)
+        if(productos.getCantidad().get(pos) >1)
         {
             System.out.println("Actualmente si hay existecias "+ productos.getCantidad().get(pos));
 
@@ -35,9 +39,9 @@ public class Product  {
             System.out.println("No hay existencias del producto solcite al proveedor");
         }
 
+        }
 
 
-    }
     public void  validacionPrecio(){
 
         System.out.print("Por favor ingrese el codigo del producto a consultar su precio: ");
@@ -59,8 +63,12 @@ public class Product  {
     public  void validacionLetra (){
         System.out.print("Por favor ingrese la letra por la que desea consultar : ");
         String  letraproducto = impresion.next();
-        int pos =productos.getCodigo().indexOf(letraproducto);
-        
+        int pos =productos.getProduct().indexOf(letraproducto);
+        for ( int i =0 ; i < productos.getProduct().size();i++){
+            System.out.println(productos.getProduct().get(i));
+
+        }
+
     }
 
 

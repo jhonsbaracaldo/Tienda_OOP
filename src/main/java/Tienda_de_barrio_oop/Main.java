@@ -13,28 +13,27 @@ public class Main {
     public static void main(String[] args) {
 
            Productos productos = new Productos();
-        Venta venta = new Venta();
+            Venta venta = new Venta();
+          Menu menu = new Menu();
            Scanner impresion = new Scanner(System.in);
 
 
 
-        int seleccion = showOptionsMenuAndCaptureOption();
+        int seleccion = showOptionsMenuAndCaptureOptionPrincipal();
            while (seleccion!= 7)
            {
                switch (seleccion )
                {
 
-                   case 1 -> productos.IngresarProducto();
-                   case 2 -> productos.EliminarProducto();
-                   case 3 -> productos.ModificarProducto();
-                   case 4 ->productos.Inventario();
-                   case 5 ->venta.Venta();
-                   case 6-> Salir();
+                   case 1 -> menu.MenuProductos();
+                   case 2 -> venta.Venta();
+                  // case 3 -> proveedores
+                   case 4 -> Salir();
 
 
 
                }
-               seleccion= showOptionsMenuAndCaptureOption();
+               seleccion= showOptionsMenuAndCaptureOptionPrincipal();
 
 
 
@@ -42,7 +41,7 @@ public class Main {
            }
     }
 
-    private static int showOptionsMenuAndCaptureOption() {
+    static int showOptionsMenuAndCaptureOptionPrincipal() {
         System.out.println("      Bienvenido " +
                 "\n" +
                 " /////////////\\\\\\\\\\\\\n" +
@@ -55,27 +54,25 @@ public class Main {
                 " (((   _)  (_    )))\\s\\s\n" +
                 "      /\\\\__/\\\\\"\"\" +");
         System.out.println("±----------------------------------------±");
-        System.out.println("|   Administrador Mi Tienda de Barrio     |");
+        System.out.println("|   Bienvenido a mi tienda de barrio     |");
         System.out.println("±----------------------------------------±");
-        System.out.println("1. Agregar producto                      |");
-        System.out.println("2. Eliminar producto                     |");
-        System.out.println("3. Actualizar producto                   |");
-        System.out.println("4. Ver todos los productos               |");
-        System.out.println("5. Venta                                 |");
-        System.out.println("6. Salir                                 |");
+        System.out.println("1. Inventario                            |");
+        System.out.println("2. Venta                                 |");
+        System.out.println("3. Proveedores                           |");
+        System.out.println("4. Salir                                 |");
         System.out.println("±----------------------------------------±");
-        System.out.print("   Ingresa tu opción:    (1 - 5)  ");
+        System.out.print("   Ingresa tu opción:    (1 - 4)  ");
         Scanner scanner = new Scanner(System.in);
         int seleccion = 6;
         try {
             seleccion = scanner.nextInt();
-            if (seleccion < 1 || seleccion > 6) {
+            if (seleccion < 1 || seleccion > 5) {
                 System.out.println("| The Option selected is not valid. Please try again |");
-                showOptionsMenuAndCaptureOption();
+                showOptionsMenuAndCaptureOptionPrincipal();
             }
         } catch (Exception e) {
             System.out.println("| The Option selected is not valid. Please try again |");
-            showOptionsMenuAndCaptureOption();
+            showOptionsMenuAndCaptureOptionPrincipal();
         }
         return seleccion;
 
