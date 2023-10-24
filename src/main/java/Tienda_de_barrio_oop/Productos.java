@@ -14,6 +14,29 @@ public class Productos {
 
     private List<Integer> codigo = new ArrayList<>();
 
+    public List<String> getProduct() {
+        return product;
+    }
+
+    public void setProduct(List<String> product) {
+        this.product = product;
+    }
+
+    public List<Double> getPrice() {
+        return price;
+    }
+
+    public void setPrice(List<Double> price) {
+        this.price = price;
+    }
+
+    public List<Integer> getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(List<Integer> codigo) {
+        this.codigo = codigo;
+    }
 
     public List<Integer> getCantidad() {
         return cantidad;
@@ -114,13 +137,13 @@ public class Productos {
 
     public void IngresarProducto() {
 
-        System.out.println("Ingrese un nuevo producto nuevo producto");
+        System.out.print("Ingrese un nuevo producto nuevo producto: ");
         String pro = impresion.next();
-        System.out.println("Asigne un codigo");
+        System.out.print("Asigne un codigo:  ");
         int code = impresion.nextInt();
-        System.out.println("Ingrese la cantidad");
+        System.out.print("Ingrese la cantidad:  ");
         int can = impresion.nextInt();
-        System.out.println("Ingrese el precio ");
+        System.out.print("Ingrese el precio: ");
         double pre = impresion.nextDouble();
         product.add(pro);
         cantidad.add(can);
@@ -136,7 +159,7 @@ public class Productos {
     }
 
     public void ModificarProducto() {
-        System.out.println(" Por favor ingrese el codigo del producto a modificar");
+        System.out.print(" Por favor ingrese el codigo del producto a modificar: ");
         int codigoproducto = impresion.nextInt();
         int posicionn = codigo.indexOf(codigoproducto);
         System.out.println("codigo    Producto     Unidades    Precio ");
@@ -146,7 +169,7 @@ public class Productos {
         int seleccion = impresion.nextInt();
 
        if ( seleccion ==1){
-           System.out.println(" Ingrese el nuevo codigo ");
+           System.out.print("Ingrese el nuevo codigo: ");
            int nuevocodigo =impresion.nextInt();
            codigo.set(posicionn,nuevocodigo);
            System.out.println(" Modificacion con exito ");
@@ -154,7 +177,7 @@ public class Productos {
            System.out.println(codigo.get(posicionn) +"      "+ product.get(posicionn) +"       "+ cantidad.get(posicionn)+"      " + price.get(posicionn));
        }
        else if (seleccion ==2){
-           System.out.println(" Ingrese el nuevo precio ");
+           System.out.print("Ingrese el nuevo precio:  ");
           double nuevoprecio =impresion.nextInt();
            price.set(posicionn,nuevoprecio);
            System.out.println(" Modificacion con exito ");
@@ -162,7 +185,7 @@ public class Productos {
            System.out.println(codigo.get(posicionn) + product.get(posicionn) +"    "+ cantidad.get(posicionn)+"   " + price.get(posicionn));
        }
        else {
-           System.out.println(" Ingrese la nueva cantidad ");
+           System.out.print("Ingrese la nueva cantidad:  ");
            int nuevocantidad =impresion.nextInt();
            cantidad.set(posicionn,nuevocantidad);
            System.out.println(" Modificacion con exito ");
@@ -177,7 +200,7 @@ public class Productos {
         public void EliminarProducto () {
 
             int posicion;
-            System.out.println("Para eliminar el producto debe ingresar el codigo ");
+            System.out.print("Para eliminar el producto debe ingresar el codigo:  ");
             int code = impresion.nextInt();
             posicion = codigo.indexOf(code);
             System.out.println("Se elimino el siguiente producto ");
