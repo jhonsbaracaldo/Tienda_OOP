@@ -1,5 +1,7 @@
 package Tienda_de_barrio_oop;
 
+import model.Product;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -219,6 +221,24 @@ public class Productos {
 
             }
 
+        }
+
+
+        public void validaciones(){
+            System.out.println(" selecciones que va validar ");
+            int seleccion = impresion.nextInt() ;
+            Product product1 = new Product("a",5600,5);
+            switch (seleccion){
+                case 1:
+                    System.out.println("validando existencia");
+                    product1.existenciaProducto();
+                    break;
+
+                case 2:
+                    System.out.println("validadndo precio");
+                    product1.validacionPrecio();
+                    break;
+            }
         }
 
     }
