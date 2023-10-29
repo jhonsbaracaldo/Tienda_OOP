@@ -1,10 +1,6 @@
 package Tienda_de_barrio_oop;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
-public abstract class AbstracProducto implements Venta {
+public abstract class AbstracProducto implements Producto {
 
     private double price;
     private String name;

@@ -2,76 +2,68 @@ package model;
 
 import Tienda_de_barrio_oop.Productos;
 
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public class Product  {
+import static java.util.Arrays.asList;
 
-        private String name;
-        private double priceproduct;
-        private int stock;
-        Scanner impresion= new Scanner(System.in);
+public class Product {
 
-    Productos productos = new Productos();
-
-    public Product(String name, double priceproduct, int stock) {
-        this.name = name;
-        this.priceproduct = priceproduct;
-        this.stock = stock;
-
-    }
+    private String name;
+    private double priceproduct;
+    private int stock;
+    Scanner impresion = new Scanner(System.in);
 
 
-
-
-       public void  existenciaProducto (){
+    public void Existingproduct(Productos productos) {
         System.out.print("Por favor ingrese el codigo del producto a consultar existencias: ");
-        int codigoproducto = impresion.nextInt();
-        int pos =productos.getCodigo().indexOf(codigoproducto);
-        System.out.println("codigo    Producto  ");
-        System.out.println(productos.getCodigo().get(pos) +"      "+ productos.getProduct().get(pos));
-        if(productos.getCantidad().get(pos) >1)
-        {
-            System.out.println("Actualmente si hay existecias "+ productos.getCantidad().get(pos));
+
+        int codeproduct = impresion.nextInt();
+        Optional<Productos> Stock = productos.getProduct().stream()
+                .filter(market -> market.getCode() == codeproduct)
+                .findFirst();
+        // impresion
+        productos.getProduct().stream().forEach(sendp -> System.out.println(sendp));
+        if (productos.getStock() > 1) {
+            System.out.println("Actualmente si hay existecias " + productos.getStock());
 
 
+        } else {
+            System.out.println("No hay existencias del producto solicite al proveedor");
         }
-        else {
-            System.out.println("No hay existencias del producto solcite al proveedor");
-        }
 
-        }
+    }
 
 
-    public void  validacionPrecio(){
-
+    public void validationPrice(Productos productos) {
+         productos.getProduct().clear();
         System.out.print("Por favor ingrese el codigo del producto a consultar su precio: ");
-        int codigoproducto = impresion.nextInt();
-        int pos =productos.getCodigo().indexOf(codigoproducto);
+        int code = impresion.nextInt();
+        Optional<Productos> validationPrice = productos.getProduct().stream()
+                .filter(market -> market.getCode() == code)
+                .findFirst();
         System.out.println("codigo    Producto  ");
-        System.out.println(productos.getCodigo().get(pos) +"      "+ productos.getProduct().get(pos));
+        System.out.println(productos.getCode() + "      " + productos.getName());
         System.out.println(" Ingrese un precio a validar ");
-        double validarPrecio = impresion.nextDouble();
-        if (productos.getPrice().get(pos) >validarPrecio){
+        double valuesprice = impresion.nextDouble();
+        if (productos.getPrice() > valuesprice) {
 
-            System.out.println("Precio ingresado "+validarPrecio +" el precio actual es mayor "+ productos.getPrice().get(pos) );
-        }
-        else {
-            System.out.println("Precio ingresado "+validarPrecio +" el precio actual es menor "+ productos.getPrice().get(pos));
+            System.out.println("Precio ingresado " + valuesprice + " el precio actual es mayor " + productos.getPrice());
+        } else {
+            System.out.println("Precio ingresado " + valuesprice + " el precio actual es menor " + productos.getPrice());
         }
     }
 
-    public  void validacionLetra (){
+    public void vowelsearch(Productos productos) {
+
         System.out.print("Por favor ingrese la letra por la que desea consultar : ");
-        String  letraproducto = impresion.next();
-        int pos =productos.getProduct().indexOf(letraproducto);
-        for ( int i =0 ; i < productos.getProduct().size();i++){
-            System.out.println(productos.getProduct().get(i));
+        String vowel = impresion.next();
 
-        }
-
+        Optional<Productos> vowelsearch = productos.getProduct().stream()
+                .filter(market -> market.getName() == vowel)
+                .findFirst();
+        productos.getProduct().stream().forEach(sendp -> System.out.println(sendp));
     }
-
-
 
 
     public String getName() {
@@ -108,4 +100,5 @@ public class Product  {
                 '}';
     }
 }
+
 

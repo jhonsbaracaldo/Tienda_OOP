@@ -1,8 +1,6 @@
 package Tienda_de_barrio_oop;
 
-import java.util.List;
-
-public interface Venta {
+public interface Producto {
 
     void venta ();
     //void producto (String name,double price, int Stock);

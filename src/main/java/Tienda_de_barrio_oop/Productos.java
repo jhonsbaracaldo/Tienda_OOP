@@ -1,56 +1,28 @@
 package Tienda_de_barrio_oop;
 
-import model.Product;
 
+import java.util.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class Productos {
     Scanner impresion = new Scanner(System.in);
     private String name;
-
-    private List<String> product = new ArrayList<>();
-    private List<Integer> cantidad = new ArrayList<>();
-    private List<Double> price = new ArrayList<>();
-
-    private List<Integer> codigo = new ArrayList<>();
-
-    public List<String> getProduct() {
-        return product;
-    }
-
-    public void setProduct(List<String> product) {
-        this.product = product;
-    }
-
-    public List<Double> getPrice() {
-        return price;
-    }
-
-    public void setPrice(List<Double> price) {
-        this.price = price;
-    }
-
-    public List<Integer> getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(List<Integer> codigo) {
-        this.codigo = codigo;
-    }
-
-    public List<Integer> getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(List<Integer> cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    private List<Double> Price = new ArrayList<>();
-    private Double priceproduct;
+    private double price;
     private int stock;
+
+    private int code;
+    private List<Productos> product = new ArrayList<>();
+
+    public Productos(int code,String name, double price, int stock ) {
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+        this.code = code;
+
+    }
 
     public String getName() {
         return name;
@@ -60,6 +32,13 @@ public class Productos {
         this.name = name;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
     public int getStock() {
         return stock;
@@ -69,169 +48,152 @@ public class Productos {
         this.stock = stock;
     }
 
+    public int getCode() {
+        return code;
+    }
 
-    @Override
-    public String toString() {
-        return "Productos{" +
-                "name='" + name + '\'' +
-                ", priceproduct=" + priceproduct +
-                ", stock=" + stock +
-                ", product='" + product + '\'' +
-                '}';
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public List<Productos> getProduct() {
+        return product;
+    }
+
+    public void setProduct(List<Productos> product) {
+        product = product;
     }
 
 
+    @Override
+    public String toString() {
+       // System.out.println("code     name     price     stock");
+        return code+"     "+ name +"     "+ price +"   "+ stock  ;
+
+    }
+
     public void Inventario() {
-        String name;
-
-        product.add("   Arroz    ");
-        product.add("  Papa     ");
-        product.add("   leche    ");
-        product.add("  Zucaritas");
-        product.add("   Arandanos");
-        product.add("   Kumis    ");
-        product.add("  Cocete   ");
-        product.add("  Verduras ");
 
 
-        //Unidades
-        cantidad.add(5);
-        cantidad.add(2);
-        cantidad.add(4);
-        cantidad.add(8);
-        cantidad.add(10);
-        cantidad.add(1);
-        cantidad.add(3);
-        cantidad.add(4);
+         System.out.println("code    name        price   stock");
+       product.add(new  Productos ( 06," Arroz   ",1500,30));
+       product.add(new Productos ( 07," Garbanzo",1800,40));
+       product.add(new Productos ( 10,"Leche   ",7500,25));
+       product.add(new Productos ( 28,"Arandano",1900 ,90));
+       product.add(new Productos ( 05," Lentejas",1350,9));
+       product.add(new Productos ( 11,"Pepino  ",6500,10));
+       product.add(new Productos ( 25,"Fresa   ",1500,12));
+       product.add(new Productos ( 30,"Jabon   ",2500,15));
 
 
-        price.add(1500.);
-        price.add(500.);
-        price.add(2500.);
-        price.add(2800.);
-        price.add(3500.);
-        price.add(4500.);
-        price.add(650.);
-        price.add(1850.);
 
-        codigo.add(01);
-        codigo.add(21);
-        codigo.add(03);
-        codigo.add(45);
-        codigo.add(05);
-        codigo.add(06);
-        codigo.add(72);
-        codigo.add(90);
+    }
 
-
-        System.out.println(" Inventario actual " + product.size() + " productos");
-        System.out.println("codigo    Producto     Unidades    Precio ");
-
-        for (int i = 0; i < product.size(); i++) {
-
-            System.out.println(codigo.get(i) + "      " + product.get(i) + "    |  " + cantidad.get(i) + " |   " + price.get(i));
-
-
+    public void PrintProduct() {
+        if (product.isEmpty()) {
+            Inventario();
         }
-
-
+        // Imprime los productos recién agregados
+        product.stream().forEach(agregado -> System.out.println(agregado));
     }
 
     public void IngresarProducto() {
 
-        System.out.print("Ingrese un nuevo producto nuevo producto: ");
-        String pro = impresion.next();
-        System.out.print("Asigne un codigo:  ");
-        int code = impresion.nextInt();
-        System.out.print("Ingrese la cantidad:  ");
-        int can = impresion.nextInt();
-        System.out.print("Ingrese el precio: ");
-        double pre = impresion.nextDouble();
-        product.add(pro);
-        cantidad.add(can);
-        price.add(pre);
-        codigo.add(code);
-        for (int i = 0; i < product.size(); i++) {
-            System.out.println("codigo    Producto     Unidades    Precio ");
-            System.out.println(+codigo.get(i) + "    |  " + product.get(i) + "    |  " + cantidad.get(i) + " |   " + price.get(i));
+            System.out.print("Ingrese un nuevo producto\n nuevo producto: ");
+            name = impresion.next();
+            System.out.print("Asigne un codigo:  ");
+            code = impresion.nextInt();
+            System.out.print("Ingrese la cantidad:  ");
+            stock = impresion.nextInt();
+            System.out.print("Ingrese el precio: ");
+            price = impresion.nextDouble();
+            impresion.nextLine();
+            product.add(new Productos(code, name, price, stock));
+            System.out.println("Producto agregado exitosamente");
 
-        }
+       product.stream().forEach(agregado -> System.out.println(agregado));
+
 
 
     }
 
     public void ModificarProducto() {
-        System.out.print(" Por favor ingrese el codigo del producto a modificar: ");
-        int codigoproducto = impresion.nextInt();
-        int posicionn = codigo.indexOf(codigoproducto);
-        System.out.println("codigo    Producto     Unidades    Precio ");
-        System.out.println(codigo.get(posicionn) +"      "+ product.get(posicionn) +"       "+ cantidad.get(posicionn)+"      " + price.get(posicionn));
+
+        System.out.println(" Ingrese el codigo del producto a modificar");
+         code = impresion.nextInt();
+        int altersearch= code;
+        Optional<Productos> AlterProduct = product.stream()
+                .filter(persona -> persona.getCode() == altersearch)
+                .findFirst();
+        product.stream().forEach(Alter -> System.out.println(Alter));
+
         System.out.println(" por favor indique que va modificar \n1.Codigo\n2.Precio\n3.Cantida");
 
         int seleccion = impresion.nextInt();
 
        if ( seleccion ==1){
-           System.out.print("Ingrese el nuevo codigo: ");
-           int nuevocodigo =impresion.nextInt();
-           codigo.set(posicionn,nuevocodigo);
-           System.out.println(" Modificacion con exito ");
-           System.out.println("codigo    Producto     Unidades    Precio ");
-           System.out.println(codigo.get(posicionn) +"      "+ product.get(posicionn) +"       "+ cantidad.get(posicionn)+"      " + price.get(posicionn));
-       }
-       else if (seleccion ==2){
-           System.out.print("Ingrese el nuevo precio:  ");
-          double nuevoprecio =impresion.nextInt();
-           price.set(posicionn,nuevoprecio);
-           System.out.println(" Modificacion con exito ");
-           System.out.println("codigo    Producto     Unidades    Precio ");
-           System.out.println(codigo.get(posicionn) + product.get(posicionn) +"    "+ cantidad.get(posicionn)+"   " + price.get(posicionn));
-       }
-       else {
-           System.out.print("Ingrese la nueva cantidad:  ");
-           int nuevocantidad =impresion.nextInt();
-           cantidad.set(posicionn,nuevocantidad);
-           System.out.println(" Modificacion con exito ");
-           System.out.println("codigo    Producto     Unidades    Precio ");
-           System.out.println(codigo.get(posicionn) + product.get(posicionn) +"    "+ cantidad.get(posicionn)+"   " + price.get(posicionn));
+           System.out.println(" Modificar Codigo ");
+           int ingcode = impresion.nextInt();
 
+           product.stream()
+                   .filter(persona -> persona.getCode() == altersearch)
+                   .forEach(user -> {
+                       user.setCode(ingcode);
 
+                      product.stream().forEach(supplier -> System.out.println(supplier));
+
+                   });
+
+       } else if (seleccion ==2)
+       {
+           System.out.println(" Modificar Precio ");
+           int ingcode = impresion.nextInt();
+
+           product.stream()
+                   .filter(persona -> persona.getCode() == altersearch)
+                   .forEach(user -> {
+                       user.setPrice(ingcode);
+
+                       product.stream().forEach(supplier -> System.out.println(supplier));
+                   });
+       }else{
+
+           System.out.println(" Modificar Cantidad ");
+           int ingcode = impresion.nextInt();
+
+           product.stream()
+                   .filter(persona -> persona.getCode() == altersearch)
+                   .forEach(user -> {
+                       user.setStock(ingcode);
+
+                       product.stream().forEach(supplier -> System.out.println(supplier));
+                   });
        }
 
     }
 
-        public void EliminarProducto () {
-
-            int posicion;
-            System.out.print("Para eliminar el producto debe ingresar el codigo:  ");
-            int code = impresion.nextInt();
-            posicion = codigo.indexOf(code);
-            System.out.println("Se elimino el siguiente producto ");
-            System.out.println("codigo    Producto     Unidades    Precio ");
-            System.out.println(codigo.get(posicion) + product.get(posicion) +"    "+ cantidad.get(posicion)+"   " + price.get(posicion));
-            codigo.remove(posicion);
-            product.remove(posicion);
-            cantidad.remove(posicion);
-            price.remove(posicion);
-
-
-            for (int i = 0; i < product.size(); i++) {
-
-                System.out.println(+codigo.get(i) + "    |  " + product.get(i) + "    |  " + cantidad.get(i) + " |   " + price.get(i));
-
-
-            }
+        public void EliminarProducto() {
+        System.out.print("Para eliminar el producto debe ingresar el codigo:  ");
+             code = impresion.nextInt();
+            int search= code;
+            System.out.println("Se elimino el producto exitosamente");
+            Optional<Productos> RemoveProduct = product.stream()
+                    .filter(persona -> persona.getCode() == search)
+                    .findFirst();
+            product.removeIf(user -> user.getCode()==(search));
+            product.stream().forEach(product -> System.out.println(product));
 
         }
 
 
-        public void validaciones(){
+       /* public void validaciones(){
             System.out.println(" selecciones que va validar ");
             int seleccion = impresion.nextInt() ;
             Product product1 = new Product("a",5600,5);
             switch (seleccion){
                 case 1:
                     System.out.println("validando existencia");
-                    product1.existenciaProducto();
+                    product1.validacionLetra();
                     break;
 
                 case 2:
@@ -239,7 +201,7 @@ public class Productos {
                     product1.validacionPrecio();
                     break;
             }
-        }
+        }*/
 
     }
 
