@@ -1,7 +1,7 @@
 package model;
 
 import Tienda_de_barrio_oop.Main;
-import Tienda_de_barrio_oop.Productos;
+import Tienda_de_barrio_oop.Products;
 
 import java.util.*;
 
@@ -59,7 +59,7 @@ public class Proveedores  {
     public List<Proveedores> getProveedores() {
         return proveedores;
     }
-    Productos productos = new Productos(06," Arroz   ",1500,30);
+    Products products = new Products(06," Arroz   ",1500,30);
 
 
 
@@ -96,22 +96,22 @@ public class Proveedores  {
         System.out.println("Codigo      name     contact    product\n");
     }
 
-    public void EnviarPedido(Productos productos) {
+    public void EnviarPedido(Products products) {
 
-        productos.IngresarProducto();
+        products.addProduct();
         System.out.println("Por favor indique el codigo que va realizar el pedido");
         codeProv= impresion.nextInt();
         int altersearch= codeProv;
 // busqueda
-        Optional<Productos> Send = productos.getProduct().stream()
+        Optional<Products> Send = products.getProduct().stream()
                 .filter(market -> market.getCode() == altersearch)
                 .findFirst();
         // impresion
-        productos.getProduct().stream().forEach(sendp -> System.out.println(sendp));
+        products.getProduct().stream().forEach(sendp -> System.out.println(sendp));
         // stock
-        productos.getProduct().stream().map(Productos::getStock).forEach(Stock -> System.out.println("Unidades\n"+Stock));
+        products.getProduct().stream().map(Products::getStock).forEach(Stock -> System.out.println("Unidades\n"+Stock));
 
-      if (productos.getStock()>= 1){
+      if (products.getStock()>= 1){
           System.out.println("A UN QUEDA ALGUITO ");
       }else{
           System.out.println("No queda nada");
@@ -127,7 +127,8 @@ public class Proveedores  {
         System.out.println("+-----------------------------+");
         System.out.println("|Pedido                        ");
         System.out.println("|"+date                     );
-        System.out.print ("|Producto:");productos.getProduct().stream().map(Productos::getName).forEach(market -> System.out.println(market));
+        System.out.print ("|Producto:");
+        products.getProduct().stream().map(Products::getName).forEach(market -> System.out.println(market));
         System.out.println("|Uniddes solicitadas:"+suplier);
         System.out.println("|                                    |");
         System.out.println("+-----------------------------------+");
