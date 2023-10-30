@@ -5,19 +5,12 @@ package Tienda_de_barrio_oop;
 import model.Product;
 import model.Proveedores;
 import model.Venta;
-import org.w3c.dom.ls.LSOutput;
-
-import javax.swing.*;
-import java.security.PublicKey;
-import java.sql.SQLOutput;
-import java.util.Optional;
-import java.util.Scanner;
 
 import java.util.Scanner;
 
 public class Menu {
 
-    Productos productos = new Productos(06,"Arroz",1500,30);
+    Products products = new Products(06,"Arroz",1500,30);
     model.Venta venta = new Venta();
     Proveedores proveedores = new Proveedores("",5,5,"");
 
@@ -31,11 +24,11 @@ public class Menu {
    {
         switch (seleccion) {
 
-            case 1 -> productos.IngresarProducto();
-            case 2 -> productos.EliminarProducto();
-            case 3 -> productos.ModificarProducto();
-            case 4 -> productos.PrintProduct();
-            case 5 -> product.validationPrice(productos);
+            case 1 -> products.addProduct();
+            case 2 -> products.deleteProduct();
+            case 3 -> products.findById();
+            case 4 -> products.getAllProducts();
+            case 5 -> product.validationPrice(products);
             case 6 ->  { Main.showOptionsMenuAndCaptureOptionPrincipal();
                 return;}
 
@@ -63,7 +56,7 @@ public class Menu {
                 " (((   _)  (_    )))\\s\\s\n" +
                 "      /\\\\__/\\\\\"\"\" +");
         System.out.println("±----------------------------------------±");
-        System.out.println("|   Administrador Mi Tienda de Barrio     |");
+        System.out.println("|   Administrador de productos           |");
         System.out.println("±----------------------------------------±");
         System.out.println("1. Agregar producto                      |");
         System.out.println("2. Eliminar producto                     |");
@@ -103,7 +96,7 @@ public class Menu {
                 case 1 ->proveedores.IngresandoProveedor();
                 case 2 -> proveedores.DeletProvedore();
                 case 3 -> proveedores.MostrarProveedores();
-                case 4 -> proveedores.EnviarPedido(productos);
+                case 4 -> proveedores.EnviarPedido(products);
                 case 5 -> { Main.showOptionsMenuAndCaptureOptionPrincipal();
                     return;
                 }
@@ -170,7 +163,7 @@ public class Menu {
         {
             switch (seleccion) {
 
-                case 1 ->venta.Venta(productos);
+                case 1 ->venta.Venta(products);
                 //case 2 -> ;implementacion para ver historial de factura
                 case 3-> {Main.showOptionsMenuAndCaptureOptionPrincipal();
                              return;}

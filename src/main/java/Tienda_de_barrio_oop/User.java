@@ -2,10 +2,6 @@
 
 package Tienda_de_barrio_oop;
 
-import Tienda_de_barrio_oop.Main;
-import Tienda_de_barrio_oop.Productos;
-import model.Proveedores;
-
 import java.util.*;
 
 public class User {

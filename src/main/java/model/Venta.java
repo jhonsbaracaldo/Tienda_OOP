@@ -1,12 +1,8 @@
 package model;
 
-import Tienda_de_barrio_oop.AbstracProducto;
-import Tienda_de_barrio_oop.Productos;
-import com.sun.security.jgss.GSSUtil;
+import Tienda_de_barrio_oop.Products;
 
 import java.util.*;
-
-import java.security.PublicKey;
 
 
 public class Venta  {
@@ -14,9 +10,9 @@ public class Venta  {
         Scanner impresion = new Scanner(System.in);
 
 
-        public void Venta( Productos productos){
-            if (productos.getProduct().isEmpty()) {
-                productos.PrintProduct();
+        public void Venta( Products products){
+            if (products.getProduct().isEmpty()) {
+                products.getAllProducts();
 
             }
 
@@ -24,17 +20,17 @@ public class Venta  {
             int code = impresion.nextInt();
             int altersearch= code;
 
-            Optional<Productos> MarketProduct = productos.getProduct().stream()
+            Optional<Products> MarketProduct = products.getProduct().stream()
                     .filter(market -> market.getCode() == altersearch)
                     .findFirst();
-            productos.getProduct().stream().forEach(buy -> System.out.println(buy));
+            products.getProduct().stream().forEach(buy -> System.out.println(buy));
 
 
             System.out.println("Por favor indique las unidades a comprar: ");
             int units = impresion.nextInt();
             double iva = 0.19;
 
-            double suma = productos.getProduct().stream()
+            double suma = products.getProduct().stream()
                     .filter(producto -> producto.getCode() == altersearch)
                     .mapToDouble(producto -> units * producto.getPrice()) // Calcular la suma
                     .sum();
@@ -48,9 +44,11 @@ public class Venta  {
             System.out.println("+-----------------------------+");
             System.out.println("|Venta                        ");
             System.out.println ("|"+date                     );
-            System.out.print ("|Producto:");productos.getProduct().stream().map(Productos::getName).forEach(market -> System.out.println(market));
+            System.out.print ("|Producto:");
+            products.getProduct().stream().map(Products::getName).forEach(market -> System.out.println(market));
             System.out.println("|Uniddes:"+units);
-            System.out.print("|Precio Unitario: ");productos.getProduct().stream().map(Productos::getPrice).forEach(marketP -> System.out.println(marketP));
+            System.out.print("|Precio Unitario: ");
+            products.getProduct().stream().map(Products::getPrice).forEach(marketP -> System.out.println(marketP));
             System.out.println("|Total sin IVA:"+suma+"  pesos");
             System.out.println("|IVA 19% :"+totalIva+" pesos");
             System.out.println("|Total:"+total);

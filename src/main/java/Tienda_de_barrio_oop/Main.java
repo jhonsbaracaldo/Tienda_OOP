@@ -1,13 +1,9 @@
 package Tienda_de_barrio_oop;
 
 //import model.Product;
- import model.Proveedores;
  import model.Venta;
-import org.w3c.dom.ls.LSOutput;
 
- import java.beans.Expression;
- import java.util.Optional;
-import java.util.Scanner;
+ import java.util.Scanner;
 
 public class Main {
 
@@ -16,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Productos productos = new Productos(06, "Arroz", 1500, 30);
+        Products products = new Products(06, "Arroz", 1500, 30);
 
         Venta venta = new Venta();
         Menu menu = new Menu();
